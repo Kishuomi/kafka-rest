@@ -1,0 +1,40 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+    id("io.spring.dependency-management") version "1.0.8.RELEASE"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configure(allprojects) {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_11
+        }
+    }
+    compileKotlin {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+    }
+}
+
+subprojects {
+    group = 'org.kishuomi'
+    version = '1.0-SNAPSHOT'
+
+    apply {
+        plugin("io.spring.dependency-management")
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencyManagement {
+        dependencies {
+            dependency 'org.jetbrains.kotlin:kotlin-stdlib:1.4.10'
+            dependency 'org.jetbrains.kotlin:kotlin-reflect:1.4.10'
+        }
+    }
+}

@@ -1,0 +1,5 @@
+rootProject.name = 'Control kafka'
+
+include('rest-api')
+include('kafka-core')
+include('app')
