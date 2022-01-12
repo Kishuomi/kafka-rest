@@ -35,6 +35,12 @@ subprojects {
         dependencies {
             dependency 'org.jetbrains.kotlin:kotlin-stdlib:1.4.10'
             dependency 'org.jetbrains.kotlin:kotlin-reflect:1.4.10'
+            dependency 'com.sparkjava:spark-kotlin:1.0.0-alpha'
+            dependency 'com.fasterxml.jackson.core:jackson-core:2.13.0'
+            dependency 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+            dependency 'com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0'
+            dependency 'org.apache.kafka:kafka-clients:2.5.0'
+            dependency 'org.slf4j:slf4j-simple:1.7.30'
         }
     }
 }
