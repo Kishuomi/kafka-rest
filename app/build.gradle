@@ -1,0 +1,21 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.kishuomi.ApplicationKt'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+ext {
+    dockerDir = "${rootProject.rootDir}/docker"
+    targetDir = "${dockerDir}/target"
+}
+
+dependencies {
+    compile(project(":rest-api"))
+
+    implementation("com.sparkjava:spark-kotlin")
+}
