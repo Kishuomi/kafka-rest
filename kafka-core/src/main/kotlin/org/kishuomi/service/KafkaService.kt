@@ -53,6 +53,16 @@ class KafkaService {
         return kafkaInstance.toInstanceDescription()
     }
 
+    fun disconnectFromInstance(kafkaInstanceName: String) {
+        try {
+            val instance = getInstance(kafkaInstanceName)
+            instance.close()
+            kafkaInstances.remove(instance.name)
+        } catch (e: InstanceNotFoundException) {
+            logger.debug("Kafka instance for name=$kafkaInstanceName not found, nothing to disconnect")
+        }
+    }
+
     fun getState(): List<KafkaInstanceDescription> = kafkaInstances.values
         .map { it.toInstanceDescription() }
         .toList()
@@ -155,7 +165,9 @@ class KafkaService {
     }
 
     fun stop() {
-        kafkaInstances.values.forEach { it.adminClient.close() }
+        kafkaInstances.values.forEach {
+            it.close()
+        }
         logger.info("KafkaService stopped")
     }
 

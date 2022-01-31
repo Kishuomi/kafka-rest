@@ -28,6 +28,11 @@ data class KafkaInstance(
     val producer: Producer<String, String>
 )
 
+fun KafkaInstance.close() {
+    this.adminClient.close()
+    this.producer.close()
+}
+
 data class TopicCreate(
     val name: String,
     val partitionsNumber: Int = 1,
